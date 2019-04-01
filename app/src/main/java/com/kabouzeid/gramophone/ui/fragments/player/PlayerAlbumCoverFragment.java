@@ -1,6 +1,7 @@
 package com.kabouzeid.gramophone.ui.fragments.player;
 
 import android.animation.Animator;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
@@ -82,6 +83,11 @@ public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    AbsSynchronizedLyrics synchronizedLyrics = (AbsSynchronizedLyrics) lyrics;
+                    synchronizedLyrics.changeLineCount();
+                    System.out.print(synchronizedLyrics.getLineCount());
+                }
                 return gestureDetector.onTouchEvent(event);
             }
         });
