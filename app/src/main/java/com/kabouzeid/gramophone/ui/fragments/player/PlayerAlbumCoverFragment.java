@@ -83,10 +83,11 @@ public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_UP){
-                    AbsSynchronizedLyrics synchronizedLyrics = (AbsSynchronizedLyrics) lyrics;
+                int action=event.getAction();
+                if(action == MotionEvent.ACTION_UP){
+                    AbsSynchronizedLyrics synchronizedLyrics;
+                    synchronizedLyrics = (AbsSynchronizedLyrics) lyrics;
                     synchronizedLyrics.changeLineCount();
-                    System.out.print(synchronizedLyrics.getLineCount());
                 }
                 return gestureDetector.onTouchEvent(event);
             }
