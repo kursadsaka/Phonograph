@@ -73,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:singleLine="true"
+                android:layout_gravity="bottom"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
             <TextView
@@ -81,8 +82,20 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:singleLine="true"
+                android:layout_gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="?android:textColorSecondary" />
+
+            <TextView
+                android:id="@+id/album"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:singleLine="true"
+                android:layout_gravity="top"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="?android:textColorSecondary" />
+
         </LinearLayout>
 
         <com.kabouzeid.gramophone.views.IconImageView

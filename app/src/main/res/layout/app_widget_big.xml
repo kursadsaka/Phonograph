@@ -93,6 +93,17 @@
             android:textColor="@color/ate_secondary_text_dark"
             tools:text="Text" />
 
+        <TextView
+            android:id="@+id/album"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/ate_secondary_text_dark"
+            tools:text="Text" />
+
     </LinearLayout>
 
 </RelativeLayout>
