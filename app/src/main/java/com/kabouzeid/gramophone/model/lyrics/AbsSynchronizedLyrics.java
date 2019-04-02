@@ -1,15 +1,22 @@
 package com.kabouzeid.gramophone.model.lyrics;
 
+import android.preference.PreferenceManager;
 import android.util.SparseArray;
+
+import com.kabouzeid.gramophone.service.MusicService;
 
 public abstract class AbsSynchronizedLyrics extends Lyrics {
     private static final int TIME_OFFSET_MS = 500; // time adjustment to display line before it actually starts
 
     protected final SparseArray<String> lines = new SparseArray<>();
     protected int offset = 0;
-    private int lineCount=1;
-    public int getLineCount(){
+    private static int lineCount=1;
+
+    public static int getLineCount(){
         return lineCount;
+    }
+    public static void setLineCount(int n){
+        lineCount=n;
     }
     public void changeLineCount(){
         lineCount=((lineCount + 2) % 6);

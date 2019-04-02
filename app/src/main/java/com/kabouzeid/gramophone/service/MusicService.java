@@ -51,6 +51,7 @@ import com.kabouzeid.gramophone.loader.PlaylistSongLoader;
 import com.kabouzeid.gramophone.model.AbsCustomPlaylist;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
+import com.kabouzeid.gramophone.model.lyrics.AbsSynchronizedLyrics;
 import com.kabouzeid.gramophone.provider.HistoryStore;
 import com.kabouzeid.gramophone.provider.MusicPlaybackQueueStore;
 import com.kabouzeid.gramophone.provider.SongPlayCountStore;
@@ -101,6 +102,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public static final String SAVED_POSITION = "POSITION";
     public static final String SAVED_POSITION_IN_TRACK = "POSITION_IN_TRACK";
+    public static final String SAVED_LINE_COUNT = "SAVED_LINE_COUNT";
     public static final String SAVED_SHUFFLE_MODE = "SHUFFLE_MODE";
     public static final String SAVED_REPEAT_MODE = "REPEAT_MODE";
 
@@ -403,8 +405,14 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private void savePositionInTrack() {
         PreferenceManager.getDefaultSharedPreferences(this).edit().putInt(SAVED_POSITION_IN_TRACK, getSongProgressMillis()).apply();
+        saveLineCount();
     }
-
+    public void saveLineCount(){
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putInt(SAVED_LINE_COUNT, AbsSynchronizedLyrics.getLineCount()).apply();
+    }
+    public void getSavedLineCount(){
+        AbsSynchronizedLyrics.setLineCount(PreferenceManager.getDefaultSharedPreferences(this).getInt(SAVED_LINE_COUNT,1));
+    }
     public void saveState() {
         saveQueues();
         savePosition();
@@ -432,6 +440,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             ArrayList<Song> restoredOriginalQueue = MusicPlaybackQueueStore.getInstance(this).getSavedOriginalPlayingQueue();
             int restoredPosition = PreferenceManager.getDefaultSharedPreferences(this).getInt(SAVED_POSITION, -1);
             int restoredPositionInTrack = PreferenceManager.getDefaultSharedPreferences(this).getInt(SAVED_POSITION_IN_TRACK, -1);
+
+            getSavedLineCount();
 
             if (restoredQueue.size() > 0 && restoredQueue.size() == restoredOriginalQueue.size() && restoredPosition != -1) {
                 this.originalPlayingQueue = restoredOriginalQueue;

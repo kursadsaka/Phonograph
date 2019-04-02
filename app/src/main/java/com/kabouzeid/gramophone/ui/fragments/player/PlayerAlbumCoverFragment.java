@@ -87,7 +87,8 @@ public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements
                 if(action == MotionEvent.ACTION_UP){
                     AbsSynchronizedLyrics synchronizedLyrics;
                     synchronizedLyrics = (AbsSynchronizedLyrics) lyrics;
-                    synchronizedLyrics.changeLineCount();
+                    if(synchronizedLyrics != null)
+                        synchronizedLyrics.changeLineCount();
                 }
                 return gestureDetector.onTouchEvent(event);
             }
