@@ -196,6 +196,10 @@
     <string name="grid_size_6">6</string>
     <string name="grid_size_7">7</string>
     <string name="grid_size_8">8</string>
+    <string name="action_filter_song_number_1">5</string>
+    <string name="action_filter_song_number_2">10</string>
+    <string name="action_filter_song_number_3">15</string>
+    <string name="action_filter_song_number_4">20</string>
     <string name="colored_footers">Colored footers</string>
     <string name="special_thanks_to">Special thanks to</string>
     <string name="changelog">Changelog</string>
@@ -304,6 +308,7 @@
     <string name="action_scan_directory">Scan directory</string>
     <string name="scan_media">Scan media</string>
     <string name="action_sort_order">Sort order</string>
+    <string name="action_filter_song_number">Filter song number</string>
     <string name="sort_order_a_z">Ascending</string>
     <string name="sort_order_z_a">Descending</string>
     <string name="sort_order_artist">Artist</string>

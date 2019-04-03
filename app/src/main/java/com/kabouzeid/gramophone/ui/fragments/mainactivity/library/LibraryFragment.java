@@ -202,10 +202,13 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             menu.findItem(R.id.action_colored_footers).setEnabled(absLibraryRecyclerViewCustomGridSizeFragment.canUsePalette());
 
             setUpSortOrderMenu(absLibraryRecyclerViewCustomGridSizeFragment, menu.findItem(R.id.action_sort_order).getSubMenu());
-        } else {
+        }else {
             menu.removeItem(R.id.action_grid_size);
             menu.removeItem(R.id.action_colored_footers);
             menu.removeItem(R.id.action_sort_order);
+        }
+        if(!(currentFragment instanceof ArtistsFragment)){
+            menu.removeItem(R.id.action_filter_song_number);
         }
         Activity activity = getActivity();
         if (activity == null) return;
