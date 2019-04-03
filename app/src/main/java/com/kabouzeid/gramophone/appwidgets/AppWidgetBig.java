@@ -71,7 +71,8 @@ public class AppWidgetBig extends BaseAppWidget {
         } else {
             appWidgetView.setViewVisibility(R.id.media_titles, View.VISIBLE);
             appWidgetView.setTextViewText(R.id.title, song.title);
-            appWidgetView.setTextViewText(R.id.text, getSongArtistAndAlbum(song));
+            appWidgetView.setTextViewText(R.id.text, song.artistName);
+            appWidgetView.setTextViewText(R.id.album, song.albumName);
         }
 
         // Set correct drawable for pause state

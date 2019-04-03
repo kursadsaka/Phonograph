@@ -113,6 +113,9 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
         if (holder.text != null) {
             holder.text.setText(getSongText(song));
         }
+        if (holder.album != null) {
+            holder.album.setText(getSongAlbum(song));
+        }
 
         loadAlbumCover(song, holder);
 
@@ -158,7 +161,11 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
     }
 
     protected String getSongText(Song song) {
-        return MusicUtil.getSongInfoString(song);
+        return song.artistName;
+    }
+
+    protected String getSongAlbum(Song song) {
+        return song.albumName;
     }
 
     @Override

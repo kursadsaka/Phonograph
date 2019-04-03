@@ -23,7 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
@@ -43,9 +42,7 @@ import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.kabouzeid.gramophone.ui.activities.intro.AppIntroActivity;
 import com.kabouzeid.gramophone.ui.fragments.mainactivity.folders.FoldersFragment;
 import com.kabouzeid.gramophone.ui.fragments.mainactivity.library.LibraryFragment;
-import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
-
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
@@ -220,7 +217,8 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                 });
             }
             ((TextView) navigationDrawerHeader.findViewById(R.id.title)).setText(song.title);
-            ((TextView) navigationDrawerHeader.findViewById(R.id.text)).setText(MusicUtil.getSongInfoString(song));
+            ((TextView) navigationDrawerHeader.findViewById(R.id.text)).setText(song.artistName);
+            ((TextView) navigationDrawerHeader.findViewById(R.id.album)).setText(song.albumName);
             SongGlideRequest.Builder.from(Glide.with(this), song)
                     .checkIgnoreMediaStore(this).build()
                     .into(((ImageView) navigationDrawerHeader.findViewById(R.id.image)));

@@ -10,7 +10,7 @@
     android:transitionName="@string/transition_mini_player"
     tools:ignore="UnusedAttribute">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
@@ -25,30 +25,83 @@
             app:srcCompat="@drawable/ic_expand_less_white_24dp"
             tools:ignore="ContentDescription" />
 
-        <TextView
-            android:id="@+id/mini_player_title"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="222dp"
             android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_toEndOf="@id/mini_player_image"
+            android:layout_toRightOf="@id/mini_player_image"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mini_player_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/mini_player_artist"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:singleLine="true"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <com.kabouzeid.gramophone.views.IconImageView
+            android:id="@+id/mini_player_next_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginEnd="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:singleLine="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+            android:layout_marginRight="4dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:scaleType="center"
+            android:background="?attr/roundSelector"
+            tools:ignore="ContentDescription"
+            app:srcCompat="@drawable/ic_skip_next_white_24dp" />
 
         <com.kabouzeid.gramophone.views.IconImageView
             android:id="@+id/mini_player_play_pause_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/mini_player_next_button"
+            android:layout_toStartOf="@id/mini_player_next_button"
             android:scaleType="center"
+            android:background="?attr/roundSelector"
             tools:ignore="ContentDescription" />
 
-    </LinearLayout>
+        <com.kabouzeid.gramophone.views.IconImageView
+            android:id="@+id/mini_player_prev_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="16dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/mini_player_play_pause_button"
+            android:layout_toStartOf="@+id/mini_player_play_pause_button"
+            android:scaleType="center"
+            android:background="?attr/roundSelector"
+            tools:ignore="ContentDescription"
+            app:srcCompat="@drawable/ic_skip_previous_white_24dp" />
+
+    </RelativeLayout>
 
     <me.zhanghai.android.materialprogressbar.MaterialProgressBar
         android:id="@+id/progress_bar"
