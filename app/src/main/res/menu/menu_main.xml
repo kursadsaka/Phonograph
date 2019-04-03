@@ -58,6 +58,9 @@
                 android:checkableBehavior="single"
                 tools:ignore="HardcodedText">
                 <item
+                    android:id="@+id/action_filter_song_number_0"
+                    android:title="All" />
+                <item
                     android:id="@+id/action_filter_song_number_1"
                     android:title="@string/action_filter_song_number_1" />
                 <item

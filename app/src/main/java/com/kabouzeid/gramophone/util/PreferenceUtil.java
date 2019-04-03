@@ -30,6 +30,7 @@ public final class PreferenceUtil {
     public static final String NOW_PLAYING_SCREEN_ID = "now_playing_screen_id";
 
     public static final String ARTIST_SORT_ORDER = "artist_sort_order";
+    public static final String ARTIST_SONG_FILTER = "artist_song_filter";
     public static final String ARTIST_SONG_SORT_ORDER = "artist_song_sort_order";
     public static final String ARTIST_ALBUM_SORT_ORDER = "artist_album_sort_order";
     public static final String ALBUM_SORT_ORDER = "album_sort_order";
@@ -245,6 +246,16 @@ public final class PreferenceUtil {
     public void setArtistSortOrder(final String sortOrder) {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putString(ARTIST_SORT_ORDER, sortOrder);
+        editor.commit();
+    }
+
+    public final int getArtistSongFilter() {
+        return mPreferences.getInt(ARTIST_SONG_FILTER, -1);
+    }
+
+    public void setArtistSongFilter(int songNumber){
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putInt(ARTIST_SONG_FILTER, songNumber);
         editor.commit();
     }
 

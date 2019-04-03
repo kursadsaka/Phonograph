@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -31,7 +32,9 @@ import com.kabouzeid.gramophone.dialogs.CreatePlaylistDialog;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.helper.SortOrder;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
+import com.kabouzeid.gramophone.interfaces.LoaderIds;
 import com.kabouzeid.gramophone.loader.SongLoader;
+import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.ui.activities.MainActivity;
 import com.kabouzeid.gramophone.ui.activities.SearchActivity;
 import com.kabouzeid.gramophone.ui.fragments.mainactivity.AbsMainActivityFragment;
@@ -43,6 +46,8 @@ import com.kabouzeid.gramophone.ui.fragments.mainactivity.library.pager.SongsFra
 import com.kabouzeid.gramophone.util.PhonographColorUtil;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 import com.kabouzeid.gramophone.util.Util;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -209,6 +214,8 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         }
         if(!(currentFragment instanceof ArtistsFragment)){
             menu.removeItem(R.id.action_filter_song_number);
+        } else {
+            setUpArtistSongFilterMenu((AbsLibraryPagerRecyclerViewCustomGridSizeFragment) currentFragment, menu.findItem(R.id.action_filter_song_number).getSubMenu());
         }
         Activity activity = getActivity();
         if (activity == null) return;
@@ -238,6 +245,9 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
                 return true;
             }
             if (handleSortOrderMenuItem(absLibraryRecyclerViewCustomGridSizeFragment, item)) {
+                return true;
+            }
+            if(handleArtistSongFilterMenuItem(absLibraryRecyclerViewCustomGridSizeFragment, item)){
                 return true;
             }
         }
@@ -428,6 +438,50 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             return true;
         }
 
+        return false;
+    }
+
+    private void setUpArtistSongFilterMenu(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull SubMenu filterMenu) {
+        int filter = PreferenceUtil.getInstance(fragment.getContext()).getArtistSongFilter();
+        filterMenu.clear();
+        filterMenu.add(0, R.id.action_filter_song_number_0, 0, R.string.action_filter_song_number_0)
+                .setChecked(filter == -1);
+        filterMenu.add(0, R.id.action_filter_song_number_1, 1, R.string.action_filter_song_number_1)
+                .setChecked(filter == 5);
+        filterMenu.add(0, R.id.action_filter_song_number_2, 2, R.string.action_filter_song_number_2)
+                .setChecked(filter == 10);
+        filterMenu.add(0, R.id.action_filter_song_number_3, 3, R.string.action_filter_song_number_3)
+                .setChecked(filter == 15);
+        filterMenu.add(0, R.id.action_filter_song_number_4, 4, R.string.action_filter_song_number_4)
+                .setChecked(filter == 20);
+
+        filterMenu.setGroupCheckable(0, true, true);
+    }
+
+    private boolean handleArtistSongFilterMenuItem(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull MenuItem item) {
+        int filter = -1;
+        item.setChecked(true);
+        switch (item.getItemId()) {
+            case R.id.action_filter_song_number_0:
+                filter = -1;
+                break;
+            case R.id.action_filter_song_number_1:
+                filter = 5;
+                break;
+            case R.id.action_filter_song_number_2:
+                filter = 10;
+                break;
+            case R.id.action_filter_song_number_3:
+                filter = 15;
+                break;
+            case R.id.action_filter_song_number_4:
+                filter = 20;
+                break;
+            default:
+                return false;
+        }
+        PreferenceUtil.getInstance(fragment.getContext()).setArtistSongFilter(filter);
+        fragment.getLoaderManager().restartLoader(LoaderIds.ARTISTS_FRAGMENT, null, (LoaderManager.LoaderCallbacks<ArrayList<Artist>>)fragment);
         return false;
     }
 

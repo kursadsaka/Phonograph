@@ -196,6 +196,7 @@
     <string name="grid_size_6">6</string>
     <string name="grid_size_7">7</string>
     <string name="grid_size_8">8</string>
+    <string name="action_filter_song_number_0">All</string>
     <string name="action_filter_song_number_1">5</string>
     <string name="action_filter_song_number_2">10</string>
     <string name="action_filter_song_number_3">15</string>
